@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Crop Advisory</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+</head>
+<style>
+    .ai-chip {
+      width: 56px;
+      height: 56px;
+      display: inline-block;
+      cursor: pointer;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .ai-chip:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 8px 20px rgba(0,0,0,.15); }
+    .glow { filter: drop-shadow(0 6px 18px rgba(99,102,241,.15)); }
+    /* subtle pulse */
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.04); opacity: .92; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .pulse { animation: pulse 2.2s infinite; transform-origin: center; }
+  :root{
+    --stalk:#8bbf4a;
+    --leaf-dark:#4f9a2e;
+    --leaf-light:#a6d16b;
+    --bg: #f6fff0;
+    --size: 60px; /* change to scale the icon */
+  }
+  .icon-wrap{
+    width:var(--size);
+    height:var(--size);
+    display:inline-grid;
+    place-items:center;
+    cursor:pointer;
+    transition: transform .18s ease;
+  }
+
+  /* subtle pop on hover */
+  .icon-wrap:hover{ transform: translateY(-6px) scale(1.04); }
+
+  /* accessible label appears on focus (keyboard) */
+  .icon-wrap:focus { outline: 3px solid rgba(79,154,46,0.18); border-radius:12px; }
+
+  /* SVG styling */
+  svg.crop-icon{
+    width:100%;
+    height:100%;
+    display:block;
+  }
+
+  /* animate gentle sway using transform-origin on the stalk group */
+  .stalk {
+    transform-origin: 50% 85%;
+    animation: sway 3.6s ease-in-out infinite;
+  }
+
+  /* leaves have a tiny staggered float */
+  .leaf-left  { transform-origin: 38% 60%; animation: leaffloat 3.6s ease-in-out infinite; }
+  .leaf-right { transform-origin: 62% 60%; animation: leaffloat 3.6s ease-in-out infinite .2s; }
+  .grain { animation: grain-pulse 4.2s ease-in-out infinite; }
+    @keyframes sway {
+    0%   { transform: rotate(0deg); }
+    25%  { transform: rotate(-2.4deg); }
+    50%  { transform: rotate(0deg); }
+    75%  { transform: rotate(2.4deg); }
+    100% { transform: rotate(0deg); }
+  }
+
+  @keyframes leaffloat {
+    0%   { transform: translateY(0) rotate(0deg); }
+    50%  { transform: translateY(-2px) rotate(-1deg); }
+    100% { transform: translateY(0) rotate(0deg); }
+  }
+
+  @keyframes grain-pulse {
+    0%   { opacity: 1; transform: scale(1); }
+    50%  { opacity: .85; transform: scale(.98); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+
+  /* Colors for parts */
+  .cls-stalk{ fill: var(--stalk); }
+  .cls-leaf-dark{ fill: var(--leaf-dark); }
+  .cls-leaf-light{ fill: var(--leaf-light); }
+  .cls-grain{ fill: #ffd966; } /* warm grain color */
+
+  /* small responsive tweak */
+  @media (max-width:420px){
+    :root{ --size: 120px; }
+  }
+</style>
+<body>
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-cente">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
+      <h1 class="logo me-auto me-lg-0"><a href="home.html"> Crop Advisory</a></h1>
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="nav-link scrollto active" href="home.html">Home</a></li>
+          <li><a class="nav-link scrollto" href="home.html">About Us</a></li>
+          <li><a class="nav-link scrollto" href="Event.html">Prices</a></li>
+          <li><a class="nav-link scrollto" href="Contact.html">Contact</a></li>
+          <li><a class="nav-link scrollto" href="Registration.html">Registration</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navba
+      r -->
+      </div>
+            <div class="col-sm-0">
+               <div id="google_element"></div>
+                <script src="http://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+                <script>
+                function loadGoogleTranslate(){
+                   new google.translate.TranslateElement("google_element");
+                    }
+                </script>
+            </div>
+          </div>
+<svg class="ai-chip glow pulse" viewBox="0 0 64 64" role="img" aria-label="AI icon">
+    <defs>
+      <linearGradient id="g1" x1="0" x2="1">
+        <stop offset="0%" stop-color="#6366f1"/>
+        <stop offset="100%" stop-color="#06b6d4"/>
+      </linearGradient>
+    </defs>
+
+    <!-- rounded chip background -->
+    <rect x="4" y="8" width="56" height="48" rx="10" fill="url(#g1)" opacity="0.98"/>
+
+    <!-- tiny "circuit" nodes -->
+    <circle cx="16" cy="20" r="2.2" fill="#fff" opacity="0.95"/>
+    <circle cx="48" cy="20" r="2.2" fill="#fff" opacity="0.95"/>
+    <circle cx="16" cy="44" r="2.2" fill="#fff" opacity="0.95"/>
+    <circle cx="48" cy="44" r="2.2" fill="#fff" opacity="0.95"/>
+
+    <!-- lines between nodes -->
+    <path d="M18 20 L46 20" stroke="rgba(255,255,255,0.6)" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M18 44 L46 44" stroke="rgba(255,255,255,0.6)" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M16 22 L16 42" stroke="rgba(255,255,255,0.25)" stroke-width="1.2" stroke-linecap="round"/>
+
+    <!-- AI letters -->
+    <g transform="translate(10,8)">
+      <text x="9" y="36" font-family="Inter, Arial, sans-serif" font-weight="700" font-size="20" fill="#071024">
+       <a href="http://127.0.0.1:5000/">AI</a>
+      </text>
+    </g>
+  </svg>
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Menu Section ======= -->
+  <section id="menu" class="menu section-bg">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-title">
+        <h2 >CROPS</h2>
+        <p>Check Out Demanding Crops</p>
+      </div>
+
+      <div class="row" data-aos="fade-up" data-aos-delay="100">
+        <div class="col-lg-12 d-flex justify-content-center">
+          <ul id="menu-flters">
+            <li data-filter="*" class="filter-active">All</li>
+            <li data-filter=".filter-starters">Kharif</li>
+            <li data-filter=".filter-salads">Rabi</li>
+            <li data-filter=".filter-specialty">Zaid</li>
+            <li><a href="http://127.0.0.1:5000/"><img src="assets/img/IMG/wheat.png" height="50px" width="50px">See Daily Mandi Prices</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
+
+        <div class="col-lg-6 menu-item filter-starters">
+          <img
+            src="https://images.pexels.com/photos/6129010/pexels-photo-6129010.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
+            class="menu-img" alt="">
+          <div class="menu-content">
+            <a href="#">Rice</a><span>₹5.95/kg</span>
+          </div>
+          <div class="menu-ingredients">
+            Mostly used crop
+          </div>
+        </div>
+
+        <div class="col-lg-6 menu-item filter-specialty">
+          <img src="https://cdn.pixabay.com/photo/2015/06/19/16/48/watermelon-815072_1280.jpg" class="menu-img" alt="">
+          <div class="menu-content">
+            <a href="#">Water Meleon</a><span>₹6.95/kg</span>
+          </div>
+          <div class="menu-ingredients">
+            Watermelon is a refreshing summer fruit
+          </div>
+        </div>
+
+        <div class="col-lg-6 menu-item filter-starters">
+          <img src="https://www.just-style.com/wp-content/uploads/sites/27/2023/02/GettyImages-1320201171.jpg"
+            class="menu-img" alt="">
+          <div class="menu-content">
+            <a href="#">Cotton</a><span>₹7.95/kg</span>
+          </div>
+          <div class="menu-ingredients">
+            Mostly used in clothing industry
+          </div>
+        </div>
+
+        <div class="col-lg-6 menu-item filter-salads">
+          <img src="https://kj1bcdn.b-cdn.net/media/10277/how-to-grow-wheat.jpg?width=1200" class="menu-img" alt="">
+          <div class="menu-content">
+            <a href="#">Wheat</a><span>₹8.95/kg</span>
+          </div>
+          <div class="menu-ingredients">
+            One of the oldest and best crop
+          </div>
+        </div>
+
+        <div class="col-lg-6 menu-item filter-specialty">
+          <img src="https://cdn.shopify.com/s/files/1/0663/9613/articles/Bittergourd.webp?v=1687165171" class="menu-img"
+            alt="">
+          <div class="menu-content">
+            <a href="#">Bitter Guard</a><span>₹9.95/kg</span>
+          </div>
+          <div class="menu-ingredients">
+            Bitter melon is a tropical fruit
+          </div>
+        </div>
+
+        <div class="col-lg-6 menu-item filter-starters">
+          <img src="https://www.aces.edu/wp-content/uploads/2018/08/shutterstock_-Zeljko-Radojko_field-corn.jpg"
+            class="menu-img" alt="">
+          <div class="menu-content">
+            <a href="#">Maize</a><span>₹4.95</span>
+          </div>
+          <div class="menu-ingredients">
+            Important for agriculture and economy
+          </div>
+        </div>
+
+        <div class="col-lg-6 menu-item filter-salads">
+          <img src="https://healthjade.com/wp-content/uploads/2017/12/barley-growing-in-the-field.jpg" class="menu-img"
+            alt="">
+          <div class="menu-content">
+            <a href="#">Barley</a><span>₹9.95</span>
+          </div>
+          <div class="menu-ingredients">
+            A very healthy grain
+          </div>
+        </div>
+
+        <div class="col-lg-6 menu-item filter-salads">
+          <img src="https://5.imimg.com/data5/RS/OR/MY-5403766/gram-chana-250x250.jpg" class="menu-img" alt="">
+          <div class="menu-content">
+            <a href="#">Gram</a><span>₹9.95</span>
+          </div>
+          <div class="menu-ingredients">
+            highly nutritious superfood
+          </div>
+        </div>
+
+        <div class="col-lg-6 menu-item filter-specialty">
+          <img src="http://upload.wikimedia.org/wikipedia/commons/f/f7/Pumpkin.jpg" class="menu-img" alt="">
+          <div class="menu-content">
+            <a href="#">Pumpkin</a><span>₹12.95</span>
+          </div>
+          <div class="menu-ingredients">
+            winter squash
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section><!-- End Menu Section -->
+
+  <!-- ======= Specials Section ======= -->
+  <section id="specials" class="specials">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-title">
+        <h2>Advisory</h2>
+        <p>Check Our Specials Advisory</p>
+      </div>
+
+      <div class="row" data-aos="fade-up" data-aos-delay="100">
+        <div class="col-lg-3">
+          <ul class="nav nav-tabs flex-column">
+            <li class="nav-item">
+              <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">Crop-Specific Guidance</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="tab" href="#tab-2">Market & Price Insights</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="tab" href="#tab-3">Language-Friendly Support</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="tab" href="#tab-4">Weather-Linked Alert</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="tab" href="#tab-5">Smart Irrigation & Fertilizer Plans</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-9 mt-4 mt-lg-0">
+          <div class="tab-content">
+            <div class="tab-pane active show" id="tab-1">
+              <div class="row">
+                <div class="col-lg-8 details order-2 order-lg-1">
+                  <h3>Crop-Specific Guidance</h3>
+                  <p class="fst-italic">
+                    <li>Seed Selection Support – Choose the right variety for your soil, region, and season.</li>
+                  </p>
+                  <p>
+                    <li>Sowing & Spacing Advice – Get the best sowing time, seed rate, and spacing for maximum
+                      productivity.</li>
+                  </p>
+                  <p>
+                    <li>Nutrient Management – Customized fertilizer schedules based on crop growth stage and soil
+                      health.</li>
+                  </p>
+                </div>
+                <div class="col-lg-4 text-center order-1 order-lg-2">
+                  <img
+                    src="https://plus.unsplash.com/premium_photo-1661962692059-55d5a4319814?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YWdyaWN1bHR1cmV8ZW58MHx8MHx8fDA%3D"
+                    alt="" class="img-fluid">
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane" id="tab-2">
+              <div class="row">
+                <div class="col-lg-8 details order-2 order-lg-1">
+                  <h3>Market & Price Insights</h3>
+                  <p class="fst-italic">
+                    <li>Live Market Prices – Daily updates of mandi and wholesale prices for major crops.</li>
+                  </p>
+                  <p>
+                    <li>Price Forecasting – AI-driven predictions on future price trends to help farmers decide when to
+                      sell.</li>
+                  </p>
+                  <p>
+                    <li>Best Market Recommendations – Suggestions on which nearby market offers the best rates.</li>
+                  </p>
+                </div>
+                <div class="col-lg-4 text-center order-1 order-lg-2">
+                  <img src="https://ontariograinfarmer.ca/wp-content/uploads/2020/02/clean-growth.jpg" alt=""
+                    class="img-fluid">
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane" id="tab-3">
+              <div class="row">
+                <div class="col-lg-8 details order-2 order-lg-1">
+                  <h3>Language-Friendly Support</h3>
+                  <p class="fst-italic">
+                    <li>Regional Language Availability – Advisory content in multiple local languages.</li>
+                  </p>
+                  <p>
+                    <li>Voice-Based Assistance – Farmers can listen to recommendations instead of reading them.</li>
+                  </p>
+                  <p>
+                    <li>Simple & Clear Communication – No technical jargon, only farmer-friendly explanations</li>
+                  </p>
+                </div>
+                <div class="col-lg-4 text-center order-1 order-lg-2">
+                  <img src="https://i.pinimg.com/736x/a6/de/c8/a6dec8a11bdedd88cb4f4e7e12c0c1c3.jpg" alt=""
+                    class="img-fluid">
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane" id="tab-4">
+              <div class="row">
+                <div class="col-lg-8 details order-2 order-lg-1">
+                  <h3>Weather-Linked Alert</h3>
+                  <p class="fst-italic">
+                    <li>Real-Time Weather Updates – Instant notifications about rainfall, temperature shifts, humidity,
+                      and wind speed.</li>
+                  </p>
+                  <p>
+                    <li>Extreme Weather Alerts – Early warnings for droughts, floods, frost, storms, or heatwaves.</li>
+                  </p>
+                  <p>
+                    <li>Crop-Specific Recommendations – Guidance on irrigation, fertilization, and pesticide use aligned
+                      with weather conditions.</li>
+                  </p>
+                </div>
+                <div class="col-lg-4 text-center order-1 order-lg-2">
+                  <img
+                    src="https://asianews.network/wp-content/uploads/bfi_thumb/AFP__20250705__64VC2H8__v3__MidRes__IndiaUsTariffTradeEconomy-7lb6d3nviwnl6y7pccpgjlcbslo5yo77k93jsak394g.jpg"
+                    alt="" class="img-fluid">
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane" id="tab-5">
+              <div class="row">
+                <div class="col-lg-8 details order-2 order-lg-1">
+                  <h3>Smart Irrigation & Fertilizer Plans</h3>
+                  <p class="fst-italic">
+                    <li>Soil-Test Based Plans – Recommendations tailored to soil health and fertility status.</li>
+                  </p>
+                  <p>
+                    <li>Crop Growth Stage Guidance – Different irrigation and fertilizer schedules for sowing,
+                      vegetative, flowering, and harvesting stages.</li>
+                  </p>
+                  <p>
+                    <li>Eco-Friendly Options – Promotion of organic manures, bio-fertilizers, and sustainable practices.
+                    </li>
+                  </p>
+                </div>
+                <div class="col-lg-4 text-center order-1 order-lg-2">
+                  <img
+                    src="https://img.etimg.com/thumb/width-420,height-315,imgsize-488908,resizemode-75,msid-70089555/news/economy/agriculture/budget-2019-zero-budget-farming-has-few-takers-in-the-state-where-it-originated/farm.jpg"
+                    alt="" class="img-fluid">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section><!-- End Specials Section -->
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-info">
+              <h3>Advisory</h3>
+              <p>
+                Knowledge Park-2 <br>
+                Greater Noida<br><br>
+                <strong>Phone:</strong> +91 -------<br>
+                <strong>Email:</strong> abc123@gmail.com<br>
+              </p>
+              <div class="social-links mt-3">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-4 col-md-6 footer-newsletter">
+            <h4>Our Newsletter</h4>
+            <p>Our servise help farmers manage risks associated with weather,pests, and diseases.</p>
+            <form action="" method="post">
+              <input type="email" name="email"><input type="submit" value="Subscribe">
+            </form>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Advisory</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+       
+        Designed by <a href="">Our Team</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

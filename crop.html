@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Crop Icon</title>
+<style>
+  :root{
+    --stalk:#8bbf4a;
+    --leaf-dark:#4f9a2e;
+    --leaf-light:#a6d16b;
+    --bg: #f6fff0;
+    --size: 160px; /* change to scale the icon */
+  }
+
+  body{
+    display:flex;
+    min-height:100vh;
+    align-items:center;
+    justify-content:center;
+    background:var(--bg);
+    margin:0;
+    font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  }
+
+  .icon-wrap{
+    width:var(--size);
+    height:var(--size);
+    display:inline-grid;
+    place-items:center;
+    cursor:pointer;
+    transition: transform .18s ease;
+  }
+
+  /* subtle pop on hover */
+  .icon-wrap:hover{ transform: translateY(-6px) scale(1.04); }
+
+  /* accessible label appears on focus (keyboard) */
+  .icon-wrap:focus { outline: 3px solid rgba(79,154,46,0.18); border-radius:12px; }
+
+  /* SVG styling */
+  svg.crop-icon{
+    width:100%;
+    height:100%;
+    display:block;
+  }
+
+  /* animate gentle sway using transform-origin on the stalk group */
+  .stalk {
+    transform-origin: 50% 85%;
+    animation: sway 3.6s ease-in-out infinite;
+  }
+
+  /* leaves have a tiny staggered float */
+  .leaf-left  { transform-origin: 38% 60%; animation: leaffloat 3.6s ease-in-out infinite; }
+  .leaf-right { transform-origin: 62% 60%; animation: leaffloat 3.6s ease-in-out infinite .2s; }
+  .grain { animation: grain-pulse 4.2s ease-in-out infinite; }
+
+  @keyframes sway {
+    0%   { transform: rotate(0deg); }
+    25%  { transform: rotate(-2.4deg); }
+    50%  { transform: rotate(0deg); }
+    75%  { transform: rotate(2.4deg); }
+    100% { transform: rotate(0deg); }
+  }
+
+  @keyframes leaffloat {
+    0%   { transform: translateY(0) rotate(0deg); }
+    50%  { transform: translateY(-2px) rotate(-1deg); }
+    100% { transform: translateY(0) rotate(0deg); }
+  }
+
+  @keyframes grain-pulse {
+    0%   { opacity: 1; transform: scale(1); }
+    50%  { opacity: .85; transform: scale(.98); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+
+  /* Colors for parts */
+  .cls-stalk{ fill: var(--stalk); }
+  .cls-leaf-dark{ fill: var(--leaf-dark); }
+  .cls-leaf-light{ fill: var(--leaf-light); }
+  .cls-grain{ fill: #ffd966; } /* warm grain color */
+
+  /* small responsive tweak */
+  @media (max-width:420px){
+    :root{ --size: 120px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Make the wrapper focusable for keyboard users -->
+<div class="icon-wrap" role="img" aria-label="Crop icon (wheat stalk)" tabindex="0">
+  <!-- Inline SVG — scalable and styleable -->
+  <svg class="crop-icon" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <!-- background circle (optional, remove if you want floating icon) -->
+    <circle cx="60" cy="60" r="56" fill="white" stroke="rgba(0,0,0,0.04)" />
+
+    <!-- stalk + leaves grouped for animation -->
+    <g class="stalk" transform="translate(0,3)">
+      <!-- stalk -->
+      <path class="cls-stalk" d="M60 80 C59 65 59 55 60 30" stroke-width="2" stroke-linecap="round" fill="none" stroke="#8bbf4a"/>
+      <!-- base thicker -->
+      <rect x="58.2" y="30" width="3.6" height="50" rx="2" fill="var(--stalk)" opacity="0.95"/>
+
+      <!-- left leaves (stacked) -->
+      <g class="leaf-left">
+        <path class="cls-leaf-dark" d="M58 38 C46 36, 34 44, 44 52 C52 59, 62 54, 58 46 Z" />
+        <path class="cls-leaf-light" d="M56 52 C44 50, 38 58, 46 64 C52 69, 60 64, 56 58 Z" opacity="0.98"/>
+      </g>
+
+      <!-- right leaves (stacked) -->
+      <g class="leaf-right">
+        <path class="cls-leaf-dark" d="M62 38 C74 36, 86 44, 76 52 C68 59, 58 54, 62 46 Z" />
+        <path class="cls-leaf-light" d="M64 52 C76 50, 82 58, 74 64 C68 69, 60 64, 64 58 Z" opacity="0.98"/>
+      </g>
+
+      <!-- top grain heads (stylized wheat grains) -->
+      <g class="grain" transform="translate(0,-6)">
+        <ellipse class="cls-grain" cx="60" cy="22" rx="5.5" ry="7.5" />
+        <ellipse class="cls-grain" cx="52" cy="28" rx="4.2" ry="6" />
+        <ellipse class="cls-grain" cx="68" cy="28" rx="4.2" ry="6" />
+        <ellipse class="cls-grain" cx="46" cy="34" rx="3.4" ry="5" />
+        <ellipse class="cls-grain" cx="74" cy="34" rx="3.4" ry="5" />
+      </g>
+
+      <!-- small accent leaf near mid-stalk -->
+      <path class="cls-leaf-light" d="M60 48 C64 46, 72 46, 68 50 C64 54, 62 53, 60 52 Z" opacity="0.85"/>
+    </g>
+  </svg>
+</div>
+
+</body>
+</html>
